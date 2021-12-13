@@ -35,11 +35,33 @@ void Thing::swap() {
     current_hardware_handle = 1 - current_hardware_handle;
 }
 
-void Thing::draw_point_at(ivec2 pos, u8vec4 color) {
+void Thing::draw_point(ivec2 pos, u8vec4 color) {
     if (!boundary_check(pos.x, pos.y)) {
         return;
     }
     pixel_at(pos.x, pos.y) = color;
+}
+
+void Thing::draw_line(ivec2 begin, ivec2 end, u8vec4 color) {
+    
+    int sy = begin.y;
+    int error = 0;
+
+    int dx = end.x - begin.x;
+    int dy = end.y - begin.y;
+
+    for (int sx = begin.x; sx <= end.x; sx++) {
+        if (!boundary_check(sx, sy)) {
+            continue;
+        }
+        pixel_at(sx, sy) = color;
+        if (2 * error + 2 * dy >= dx) {
+            sy++;
+            error += dy - dx;
+        } else {
+            error += dy;
+        }
+    }
 }
 
 u8vec4 &Thing::pixel_at(int x, int y) {

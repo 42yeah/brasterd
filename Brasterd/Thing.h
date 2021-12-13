@@ -18,7 +18,9 @@ public:
     // Apply changes to texture
     void swap();
 
-    void draw_point_at(ivec2 pos, u8vec4 color);
+    void draw_point(ivec2 pos, u8vec4 color);
+
+    void draw_line(ivec2 begin, ivec2 end, u8vec4 color);
 
     // NO BOUNDARY check pixel_at. DANGEROUS OPERATION! DANGER DANGER!
     u8vec4 &pixel_at(int x, int y);

@@ -2,6 +2,7 @@
 #include "Display.h"
 #include "Thing.h"
 #include "standards.h"
+#include "linalg.h"
 
 
 int main() {
@@ -16,11 +17,7 @@ int main() {
 
         // === Software render part ===
         thing.clear();
-        for (int y = 0; y < 409; y++) {
-            for (int x = 0; x < 109; x++) {
-                thing.draw_point_at(ivec2(x, y), u8vec4(255, 125, 0, 255));
-            }
-        }
+        thing.draw_line(ivec2(10, 10), ivec2(1000, 400), u8vec4(255, 125, 0, 255));
         thing.swap();
         // === Software render end ===
         
