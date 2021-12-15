@@ -17,7 +17,7 @@ int main() {
 
         // === Software render part ===
         thing.clear();
-        thing.draw_line(ivec2(10, 10), ivec2(1000, 400), u8vec4(255, 125, 0, 255));
+        thing.draw_line(ivec2(1000, 720), ivec2(10, 10), u8vec4(255, 125, 0, 255));
         thing.swap();
         // === Software render end ===
         

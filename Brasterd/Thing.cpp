@@ -44,17 +44,34 @@ void Thing::draw_point(ivec2 pos, u8vec4 color) {
 
 void Thing::draw_line(ivec2 begin, ivec2 end, u8vec4 color) {
     
-    int sy = begin.y;
-    int error = 0;
-
     int dx = end.x - begin.x;
     int dy = end.y - begin.y;
+    bool swap_xy = false;
+    if (abs(dy) > abs(dx)) {
+        swoop(begin.x, begin.y);
+        swoop(end.x, end.y);
+        swoop(dx, dy);
+        swap_xy = true;
+    }
+    if (begin.x > end.x) {
+        swoop(begin, end);
+        dx = -dx;
+        dy = -dy;
+    }
 
+    int sy = begin.y;
+    int error = 0;
+    
     for (int sx = begin.x; sx <= end.x; sx++) {
         if (!boundary_check(sx, sy)) {
             continue;
         }
-        pixel_at(sx, sy) = color;
+        if (!swap_xy) {
+            pixel_at(sx, sy) = color;
+        } else {
+            pixel_at(sy, sx) = color;
+        }
+        
         if (2 * error + 2 * dy >= dx) {
             sy++;
             error += dy - dx;
@@ -62,6 +79,10 @@ void Thing::draw_line(ivec2 begin, ivec2 end, u8vec4 color) {
             error += dy;
         }
     }
+}
+
+void Thing::draw_triangle(ivec2 a, ivec2 b, ivec2 c) {
+    ivec2 ab = b - a;
 }
 
 u8vec4 &Thing::pixel_at(int x, int y) {

@@ -22,6 +22,8 @@ public:
 
     void draw_line(ivec2 begin, ivec2 end, u8vec4 color);
 
+    void draw_triangle(ivec2 a, ivec2 b, ivec2 c);
+
     // NO BOUNDARY check pixel_at. DANGEROUS OPERATION! DANGER DANGER!
     u8vec4 &pixel_at(int x, int y);
 
