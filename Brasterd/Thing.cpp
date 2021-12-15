@@ -43,7 +43,6 @@ void Thing::draw_point(ivec2 pos, u8vec4 color) {
 }
 
 void Thing::draw_line(ivec2 begin, ivec2 end, u8vec4 color) {
-    
     int dx = end.x - begin.x;
     int dy = end.y - begin.y;
     bool swap_xy = false;
